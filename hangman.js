@@ -34,6 +34,10 @@ let updatePage = function () {
     image.src = `images/hangman${guessCount}.gif`; 
 }
 let guessLetter = function () {
+
+    if (guessCount == 0) {
+    return;
+}
     let input = document.getElementById("guess");
     let letter = input.value;
     letter = letter.toLowerCase();
