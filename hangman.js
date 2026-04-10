@@ -3,11 +3,11 @@ const POSSIBLE_WORDS = ["obdurate", "verisimlitude", "defenestrate", "obsquious"
 
 var word = "";
 var guesses = ""; // this will be all the guesses 
-var guessCount; 
-const MAX_GUESSES = 6; 
+var guessCount;
+const MAX_GUESSES = 6;
 
 let newGame = function () {
-    guessCount = MAX_GUESSES; 
+    guessCount = MAX_GUESSES;
     let randomIndex = parseInt(Math.random() * POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
     guesses = "";
@@ -30,21 +30,24 @@ let updatePage = function () {
     let guessArea = document.getElementById("guesses");
     guessArea.textContent = "Guesses: " + guesses;
 
-    let image =  document.getElementById("hangmanpic"); 
-    image.src = `images/hangman${guessCount}.gif`; 
+    let image = document.getElementById("hangmanpic");
+    image.src = `images/hangman${guessCount}.gif`;
 }
 let guessLetter = function () {
 
+    if (word == "") {
+        return;
+    }
     if (guessCount == 0) {
-    return;
-}
+        return;
+    }
     let input = document.getElementById("guess");
     let letter = input.value;
     letter = letter.toLowerCase();
-    if(word.indexOf(letter) < 0){
-        guessCount--; 
-        }
+    if (word.indexOf(letter) < 0) {
+        guessCount--;
+    }
     guesses += letter;
-    input.value=""; // Guess box is cleared after every guess 
+    input.value = ""; // Guess box is cleared after every guess 
     updatePage();
 }
