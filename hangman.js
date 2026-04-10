@@ -47,6 +47,10 @@ let guessLetter = function () {
     if (word.indexOf(letter) < 0) {
         guessCount--;
     }
+
+    if (guesses.indexOf(letter) >= 0) {
+    return;
+}
     guesses += letter;
     input.value = ""; // Guess box is cleared after every guess 
     updatePage();
