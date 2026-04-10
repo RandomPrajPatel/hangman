@@ -32,6 +32,15 @@ let updatePage = function () {
 
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
+
+
+    if (clueString.indexOf("_") < 0 && word != "") {
+        guessArea.textContent = guessArea.textContent + " - You Win!";
+    }
+
+    if (guessCount == 0) {
+        guessArea.textContent = guessArea.textContent + " - You Lose!";
+    }
 }
 let guessLetter = function () {
 
@@ -44,14 +53,19 @@ let guessLetter = function () {
     let input = document.getElementById("guess");
     let letter = input.value;
     letter = letter.toLowerCase();
+
+    if (guesses.indexOf(letter) >= 0) {
+        return;
+    }
+
     if (word.indexOf(letter) < 0) {
         guessCount--;
     }
 
-    if (guesses.indexOf(letter) >= 0) {
-    return;
-}
+    
     guesses += letter;
     input.value = ""; // Guess box is cleared after every guess 
+
     updatePage();
+
 }
