@@ -41,5 +41,6 @@ let guessLetter = function () {
         guessCount--; 
         }
     guesses += letter;
+    input.value=""; // Guess box is cleared after every guess 
     updatePage();
 }
