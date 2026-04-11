@@ -47,7 +47,14 @@ let guessLetter = function () {
     if (word == "") {
         return;
     }
-    if (guessCount == 0) {
+     let clueString = "";
+    for (let i = 0; i < word.length; i++) {
+        if (guesses.indexOf(word.charAt(i)) < 0) {
+            clueString += "_";
+        }
+    }
+
+    if (guessCount == 0 || clueString.indexOf("_") < 0) {
         return;
     }
     let input = document.getElementById("guess");
